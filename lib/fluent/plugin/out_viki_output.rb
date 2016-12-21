@@ -185,7 +185,7 @@ module Fluent
       record['ip_raw'], record['ip'] = raw_ip, valid_ip
       record['country'] = geo_country || record['country']
 
-      record.merge! city_of_ip(valid_ip)
+      record.merge! city_of_ip(valid_ip) unless valid_ip.nil?
     end
 
     def resolve_correct_ip(ips)
@@ -195,7 +195,8 @@ module Fluent
         return [ip, geo_country] unless geo_country.nil?
       end unless ips.nil?
 
-      [ips.first, nil]
+      return [ips.first, nil] unless ips.nil?
+      [nil,nil]
     end
 
     

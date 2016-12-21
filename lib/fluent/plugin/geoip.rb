@@ -29,7 +29,7 @@ module Fluent
       end
     end
 
-    def set_geoip_db_path(path)
+    def self.set_geoip_db_path(path)
       @@geoip_db_path = path
     end
 
